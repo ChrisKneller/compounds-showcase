@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from sqlalchemy import Column, Enum, ForeignKey, Integer, Numeric, String, Table  # noqa
+from sqlalchemy import Column, Enum, Float, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -31,10 +31,10 @@ class Compound(Base):
 
     compound_id = Column(Integer, primary_key=True)
     smiles = Column(String)
-    molecular_weight = Column(Numeric)
-    ALogP = Column(Numeric)
+    molecular_weight = Column(Float)
+    ALogP = Column(Float)
     molecular_formula = Column(String)
-    num_rings = Column(Numeric)
+    num_rings = Column(Integer)
     image = Column(String)
     assay_results = relationship(
         "Assay", secondary=compound_assay, back_populates="compounds"
