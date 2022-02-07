@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 
 from models import Assay, Compound
-from transform import connect_to_sqlite
+from database import connect_to_sqlite
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True

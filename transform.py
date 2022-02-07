@@ -1,10 +1,9 @@
-from contextlib import contextmanager
 import json
 import os
 from prefect import task, Flow
 import sqlalchemy as db
-import sqlalchemy.orm as orm
 
+import database
 from models import Assay, Base, Compound
 
 
@@ -22,32 +21,6 @@ def create_sqlite_tables(db_name: str) -> bool:
     engine = db.create_engine(f"sqlite:///{db_name}.sqlite")
     Base.metadata.create_all(engine)
     return True
-
-
-@contextmanager
-def connect_to_sqlite(db_name: str) -> orm.session.Session:
-    """
-    Connect to the sqlite db at db_name.
-
-    Args:
-        db_name (str): the name of the sqlite db without the .sqlite extension
-
-    Returns:
-        orm.session.Session: a SQLAlchemy session to manage persistance
-            operations for ORM-mapped objects
-    """
-    engine = db.create_engine(f"sqlite:///{db_name}.sqlite")
-    Session = orm.sessionmaker()
-    Session.configure(bind=engine)
-    session = Session()
-    try:
-        yield session
-        session.commit()
-    except:  # noqa (bare except recommended here in sqlalchemy docs)
-        session.rollback()
-        raise
-    finally:
-        session.close()
 
 
 @task
@@ -86,7 +59,7 @@ def add_compounds_to_db(db_name: str, compounds: list) -> bool:
         bool: True if the function runs without any errors
     """
     for compound in compounds:
-        with connect_to_sqlite(db_name) as session:
+        with database.connect_to_sqlite(db_name) as session:
             compound_in_table = (
                 session.query(Compound)
                 .filter(Compound.compound_id == compound.compound_id)
@@ -98,7 +71,7 @@ def add_compounds_to_db(db_name: str, compounds: list) -> bool:
 
 
 with Flow("compounds_json_to_sqlite") as flow:
-    mydb = "compound_assay"
+    mydb = database.DEFAULT_SQLITE_DB
     myjson = os.path.join("data", "compounds.json")
 
     tables_exist = create_sqlite_tables(mydb)
