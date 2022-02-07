@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 from sqlalchemy import Column, Enum, ForeignKey, Integer, Numeric, String, Table  # noqa
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -14,8 +16,19 @@ compound_assay = Table(
 
 
 # define the Compound class model to the compound database table
+@dataclass
 class Compound(Base):
     __tablename__ = "compound"
+
+    compound_id: int
+    smiles: str
+    molecular_weight: float
+    ALogP: float
+    molecular_formula: str
+    num_rings: int
+    image: str
+    assay_results: list
+
     compound_id = Column(Integer, primary_key=True)
     smiles = Column(String)
     molecular_weight = Column(Numeric)
@@ -35,8 +48,17 @@ class Compound(Base):
 
 
 # define the Assay class model to the assay database table
+@dataclass
 class Assay(Base):
     __tablename__ = "assay"
+
+    result_id: int
+    target: str
+    result: str
+    operator: str
+    value: int
+    unit: str
+
     result_id = Column(Integer, primary_key=True)
     target = Column(String)
     result = Column(Enum("IC50", "Ki", "Kd"))
