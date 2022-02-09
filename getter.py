@@ -1,10 +1,11 @@
 import requests
 
-API_BASE = "http://127.0.0.1:5000/api"
-COMPOUNDS = API_BASE + "/compounds"
-SINGLE_COMPOUND = API_BASE + "/compound/{}"
-ASSAYS = API_BASE + "/assays"
-SINGLE_ASSAY = API_BASE + "/assay/{}"
+from constants import (
+    API_ASSAYS,
+    API_COMPOUNDS,
+    API_SINGLE_ASSAY,
+    API_SINGLE_COMPOUND,
+)
 
 
 def get_compounds() -> dict:
@@ -14,7 +15,7 @@ def get_compounds() -> dict:
     Returns:
         dict: a dictionary representation of the json data
     """
-    r = requests.get(COMPOUNDS)
+    r = requests.get(API_COMPOUNDS)
     return r.json()
 
 
@@ -29,7 +30,7 @@ def get_compound(compound_id: int) -> dict:
     Returns:
         dict: a dictionary representation of the json data
     """
-    r = requests.get(SINGLE_COMPOUND.format(compound_id))
+    r = requests.get(API_SINGLE_COMPOUND.format(compound_id))
     return r.json()
 
 
@@ -40,7 +41,7 @@ def get_assays() -> dict:
     Returns:
         dict: a dictionary representation of the json data
     """
-    r = requests.get(ASSAYS)
+    r = requests.get(API_ASSAYS)
     return r.json()
 
 
@@ -55,5 +56,5 @@ def get_assay(result_id: int) -> dict:
     Returns:
         dict: a dictionary representation of the json data
     """
-    r = requests.get(SINGLE_ASSAY.format(result_id))
+    r = requests.get(API_SINGLE_ASSAY.format(result_id))
     return r.json()
