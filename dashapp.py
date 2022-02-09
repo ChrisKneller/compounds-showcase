@@ -5,6 +5,7 @@ import pandas as pd
 import re
 import warnings
 
+import constants
 import getter
 
 # Get rid of warnings that aren't helpful
@@ -384,4 +385,4 @@ def convert_molecular_formula_to_html(molecular_formula: str) -> html.Span:
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(host=constants.HOST, port=constants.DASH_PORT, debug=True)
