@@ -1,0 +1,29 @@
+body {
+	font-family: monospace;
+	text-align: center;
+	padding: 1.5rem;
+	font-size: 1rem;
+	line-height: 1;
+	transition: all 725ms ease-in-out;
+}
+
+h1 {
+	font-size: 2rem;
+	font-weight: bolder;
+	margin-bottom: 1rem;
+}
+
+p { 
+	text-align : center;
+}
+
+div.content-container {
+	margin-top: 1em;
+}
+
+
+div.dash-cell-value p {
+    text-align: right;
+    font-family: monospace;
+    margin: 0.2em;
+}
