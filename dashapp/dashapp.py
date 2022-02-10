@@ -80,6 +80,8 @@ def single_compound_page(compound_id: str) -> html.Div:
         columns=cols,
         sort_action="native",
         sort_by=[{"column_id": "value", "direction": "desc"}],
+        filter_action="native",
+        id=f"compound-{compound_id}-assay-table"
     )
 
     # Put our plots in divs along with any headings or other text
