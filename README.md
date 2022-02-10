@@ -2,9 +2,7 @@
 
 The purpose of this is to show some interesting software engineering based on a single json file with compound & assay data.
 
-# Setup
-
-## Requirements
+# Requirements
 
 Before going through the installation steps, ensure you have the following installed:
 - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
@@ -12,57 +10,60 @@ Before going through the installation steps, ensure you have the following insta
 - [pip](https://pip.pypa.io/en/stable/installation/)
 - [Visual C++ Build Tools for Visual Studio](https://visualstudio.microsoft.com/downloads/) (Windows only)
 
-## Installation
+# Installation
 
-The below have been tested and successfully run on Ubuntu20.04 and MacOS Catalina (10.15.7) at the time of writing (commit hash `ceff610741d3291770fb8ed9d470bb14ec717d2f`).
+The below have been tested and successfully run on Ubuntu20.04, MacOS Catalina (10.15.7) and Windows 10 at the time of writing.
 
-### Cloning
+---
 
-- Clone this repo & cd into it
+## Option 1: Automatic installation and running (Linux/MacOS)
 
 ```shell
 git clone https://github.com/ChrisKneller/compounds-showcase
 cd compounds-showcase
-```
-
-### Option 1: Automatic installation and running (Linux/MacOS)
-
-```shell
 ./setup.sh
 ```
 
 <sub>(permissions should persist via the git setup, but if you get `permission denied: ./setup.sh`, you need to run `chmod +x setup.sh` before then running `./setup.sh` again)</sub>
 
-This will create a virtual environment, activate it, install requirements, run a Prefect pipeline to convert the json data into a database and then serve two web servers at 0.0.0.0 (API on port 5000; dashboard on port 8050).
-
 After running this script once you can always just run `python3 runservers.py` to just run the servers.
 
-### Option 2: Run the comands for yourself
+---
 
-Replace `python3` with `python` if any of the commands below don't work on Windows.
+## Option 2: Run the comands for yourself
 
-1. Set up a virtual environment and activate it 
+Replace `python3` with `python` if any of the Python commands below don't work on Windows.
 
-#### 1.1 Linux/MacOS
+### Step 0. Clone & cd
+
+```shell
+git clone https://github.com/ChrisKneller/compounds-showcase
+cd compounds-showcase
+````
+
+### Step 1. Set up a virtual environment and activate it 
+
+- Linux/MacOS
 
 ```shell
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-#### 1.2 Windows
+- Windows
+
 ```cmd
 python -m venv .venv
 .venv\Scripts\activate.bat
 ```
 
-2. Install the requirements
+### Step 2. Install the requirements
 
 ```shell
 pip3 install -r requirements.txt
 ```
 
-2. Run the `Prefect` flow to create a database and tables from the json data
+### Step 3. Run the `Prefect` flow to create a database and tables from the json data
 
 ```shell
 python3 flaskapp/transform.py
@@ -70,11 +71,13 @@ python3 flaskapp/transform.py
 
 Check that `compound_assay.sqlite` has been created in the `flaskapp` folder. Prefect should provide some logging to show which stages were successful or unsuccessful.
 
-3. Run the servers locally
+### Step 4. Run the servers locally
 
 ```shell
 python3 runservers.py
 ```
+
+Setup should now be done and servers should be running.
 
 # What just happened?
 
