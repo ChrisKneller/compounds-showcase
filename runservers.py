@@ -1,6 +1,9 @@
 import json
 import logging
-from multiprocessing import Process
+import multiprocessing as mp
+import platform
+import threading as th
+
 from waitress import serve
 
 from flaskapp import app as flaskapp
@@ -19,8 +22,16 @@ dash_kwargs = {"host": HOST, "port": DASH_PORT}
 
 if __name__ == "__main__":
 
-    flask_process = Process(target=serve, args=(flaskapp.app,), kwargs=flask_kwargs)
-    dash_process = Process(target=serve, args=(dashapp.server,), kwargs=dash_kwargs)
+    # Use multiprocessing on Linux as forking is supported
+    if platform.system() == "Linux":
+        multi = mp.Process
+
+    # Multithreading for MacOS and Windows
+    else:
+        multi = th.Thread
+
+    flask_process = multi(target=serve, args=(flaskapp.app,), kwargs=flask_kwargs)
+    dash_process = multi(target=serve, args=(dashapp.server,), kwargs=dash_kwargs)
 
     logging.basicConfig(level=logging.INFO)
 
