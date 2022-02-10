@@ -1,3 +1,5 @@
+![CI](https://github.com/ChrisKneller/compounds-showcase/actions/workflows/main.yml/badge.svg)
+
 # Background
 
 The purpose of this is to show some interesting software engineering based on a single json file with compound & assay data.
@@ -135,6 +137,19 @@ Go to http://localhost:8050 or http://0.0.0.0:8050 and click compounds to start 
 - Click through to any compound to see a dedicated page with further information on the compound
 
 # Notes
+
+## Testing
+
+Note that a CI pipeline has been setup via Github Actions. This pipeline:
+
+- Sets up a fresh Ubuntu-20.04 environment
+- Clones the repository and cds into it
+- Creates a virtual environment and installs the requirements
+- Runs `transform.py`, the Prefect flow and checks that a database has been created
+- Runs `runservers.py` to start the servers
+- Sends various curl & grep commands to both servers to ensure content is as expected.
+
+If any part fails, the whole pipeline fails.
 
 ## Design choices & potential future updates
 
