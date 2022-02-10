@@ -4,9 +4,9 @@ import sqlalchemy as db
 import sqlalchemy.orm as orm
 
 # Relative location changes depending on how we call this file
-if __name__ == "__main__":
+if __name__ in ["__main__", "database"]:
     DEFAULT_SQLITE_DB = "compound_assay"
-elif __name__ == "flaskapp.database":
+elif __name__ in ["flaskapp.database"]:
     DEFAULT_SQLITE_DB = os.path.join("flaskapp", "compound_assay")
 
 

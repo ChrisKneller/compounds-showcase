@@ -3,8 +3,12 @@ import os
 from prefect import task, Flow
 import sqlalchemy as db
 
-from flaskapp import database
-from flaskapp.models import Assay, Base, Compound
+if __name__ == "__main__":
+    import database
+    from models import Assay, Base, Compound
+elif __name__ == "flaskapp.transform":
+    from flaskapp import database
+    from flaskapp.models import Assay, Base, Compound
 
 
 @task
@@ -71,8 +75,16 @@ def add_compounds_to_db(db_name: str, compounds: list) -> bool:
 
 
 with Flow("compounds_json_to_sqlite") as flow:
+
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    dir_name = os.path.basename(dir_path)
+
     mydb = database.DEFAULT_SQLITE_DB
     myjson = os.path.join("data", "compounds.json")
+
+    if not os.path.isfile(myjson):
+        mydb = os.path.join(dir_name, mydb)
+        myjson = os.path.join(dir_name, myjson)
 
     tables_exist = create_sqlite_tables(mydb)
     compounds = extract_compounds_from_json(myjson)
