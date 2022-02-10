@@ -21,14 +21,14 @@ The below have been tested and successfully run on Ubuntu20.04 and MacOS Catalin
 - Clone this repo & cd into it
 
 ```shell
-$ git clone https://github.com/ChrisKneller/compounds-showcase
-$ cd compounds-showcase
+git clone https://github.com/ChrisKneller/compounds-showcase
+cd compounds-showcase
 ```
 
 ### Option 1: Automatic installation and running (Linux/MacOS)
 
 ```shell
-$ ./setup.sh
+./setup.sh
 ```
 
 <sub>(permissions should persist via the git setup, but if you get `permission denied: ./setup.sh`, you need to run `chmod +x setup.sh` before then running `./setup.sh` again)</sub>
@@ -46,26 +46,26 @@ Replace `python3` with `python` if any of the commands below don't work on Windo
 #### 1.1 Linux/MacOS
 
 ```shell
-$ python3 -m venv .venv
-$ source .venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 #### 1.2 Windows
 ```cmd
-> python -m venv .venv
-> .venv\Scripts\activate.bat
+python -m venv .venv
+.venv\Scripts\activate.bat
 ```
 
 2. Install the requirements
 
 ```shell
-$ pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 2. Run the `Prefect` flow to create a database and tables from the json data
 
 ```shell
-$ python3 flaskapp/transform.py
+python3 flaskapp/transform.py
 ```
 
 Check that `compound_assay.sqlite` has been created in the `flaskapp` folder. Prefect should provide some logging to show which stages were successful or unsuccessful.
@@ -73,7 +73,7 @@ Check that `compound_assay.sqlite` has been created in the `flaskapp` folder. Pr
 3. Run the servers locally
 
 ```shell
-$ python3 runservers.py
+python3 runservers.py
 ```
 
 # What just happened?
