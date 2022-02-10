@@ -1,19 +1,19 @@
 from dash import Dash, html, dcc, Input, Output, callback, dash_table
 import dash_bio as dashbio
+from flask import Flask
 import plotly.express as px
 import pandas as pd
 import re
 import warnings
 
-import constants
 import getter
 
 # Get rid of warnings that aren't helpful
 warnings.simplefilter(action="ignore", category=FutureWarning)
 pd.options.mode.chained_assignment = None
 
-app = Dash(__name__)
-
+server = Flask(__name__)
+app = Dash(server=server)
 
 # Set up main template page
 app.layout = html.Div(
@@ -385,4 +385,4 @@ def convert_molecular_formula_to_html(molecular_formula: str) -> html.Span:
 
 
 if __name__ == "__main__":
-    app.run_server(host=constants.HOST, port=constants.DASH_PORT, debug=True)
+    app.run_server(debug=True)
