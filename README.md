@@ -52,7 +52,7 @@ $ pip3 install -r requirements.txt
 $ python3 flaskapp/transform.py
 ```
 
-Check that `compound-assay.sqlite` has been created in the `dashapp` folder. Prefect should provide some logging to show which stages were successful or unsuccessful.
+Check that `compound_assay.sqlite` has been created in the `flaskapp` folder. Prefect should provide some logging to show which stages were successful or unsuccessful.
 
 3. Run the servers locally
 
@@ -65,10 +65,10 @@ $ python3 runservers.py
 The above steps should have:
 
 - created a sqlite database
-- created a flask app based on the above database and served locally on port 5000 which provides API endpoints (GET only at this stage)
-- created a dash app and served locally on port 8050 which allows browsing of compound and assay data, with some visuals to explore the data
+- created a flask app based on the above database providing API endpoints (GET only at this stage), served locally on port 5000 
+- created a dash app allowing browsing of compound and assay data, with some visuals to explore the data, served locally on port 8050 
 
-You should have some logging to confirm this
+You should have some logging to confirm this:
 
 ```text
 INFO:waitress:Serving on http://0.0.0.0:5000
