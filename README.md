@@ -21,7 +21,7 @@ The below have been tested and successfully run on Ubuntu20.04, MacOS Catalina (
 ## Option 1: Automatic installation and running (Linux/MacOS)
 
 ```shell
-git clone https://github.com/ChrisKneller/compounds-showcase
+git clone git@github.com:ChrisKneller/compounds-showcase.git
 cd compounds-showcase
 ./setup.sh
 ```
@@ -39,7 +39,7 @@ Replace `python3` with `python` if any of the Python commands below don't work o
 ### Step 0. Clone & cd
 
 ```shell
-git clone https://github.com/ChrisKneller/compounds-showcase
+git clone git@github.com:ChrisKneller/compounds-showcase.git
 cd compounds-showcase
 ````
 
