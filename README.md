@@ -75,7 +75,7 @@ INFO:waitress:Serving on http://0.0.0.0:5000
 INFO:waitress:Serving on http://0.0.0.0:8050
 ```
 
-Go to http://0.0.0.0:8050 and click compounds to start browsing compound data.
+Go to http://localhost:8050 or http://0.0.0.0:8050 and click compounds to start browsing compound data.
 
 # Time to explore! Things to do...
 
