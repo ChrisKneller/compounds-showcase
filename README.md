@@ -96,11 +96,11 @@ INFO:waitress:Serving on http://0.0.0.0:5000
 INFO:waitress:Serving on http://0.0.0.0:8050
 ```
 
-Go to http://localhost:8050 or http://0.0.0.0:8050 and click compounds to start browsing compound data.
+Go to http://localhost:8050 and click compounds to start browsing compound data.
 
 # Time to explore! Things to do...
 
- ## On the [compounds](http://0.0.0.0:8050/compounds) page:
+ ## On the [compounds](http://localhost:8050/compounds) page:
  
  ### Check out the scatter plot
 - hover over any data points that you want more detail for, including the trendlines
@@ -112,7 +112,7 @@ Go to http://localhost:8050 or http://0.0.0.0:8050 and click compounds to start 
 	 - Try filtering e.g. for "Cl" in molecular_formula to see any compounds containing chlorine. You can further filter for e.g. molecular weight ">500", ALogP "<5". You can then see that there is only one compound containing chlorine with a molecular weight above 500 and ALogP below 5
 - Click through to any compound to see a dedicated page with further information on the compound
 
-## On an [individual compound](http://0.0.0.0:8050/compounds/1175669) page:
+## On an [individual compound](http://localhost:8050/compounds/1175669) page:
 ### Summary
 - Read through the summary of the compound
 ### Check out the smiles plot
@@ -124,7 +124,7 @@ Go to http://localhost:8050 or http://0.0.0.0:8050 and click compounds to start 
 - The table of assay results shows all assay results associated with the compound along with their data.
 - Click through to any individual assay page to see a basic dedicated page for that assay
 
-## On the [assays](http://0.0.0.0:8050/assays) page
+## On the [assays](http://localhost:8050/assays) page
 
 ### Check out the bar graph
 - hover over any data points that you want more detail for, including the trendlines
@@ -173,7 +173,7 @@ There should be a badge at the top of the README representing the status of the 
 
 ### Deployment & server
 - The built-in server in Flask (& Dash) is not suitable for use in production, so I chose to use [waitress](https://github.com/Pylons/waitress), a "production-quality pure-Python WSGI server with very acceptable performance" with no dependencies other than those in the standard Python library.
-- Hosting at 0.0.0.0 allows other devices on the same network to access the server by visiting {host_computer_ip}:8050. This would require the appropriate firewall settings to allow access.
+- Hosting at localhost allows other devices on the same network to access the server by visiting {host_computer_ip}:8050. This would require the appropriate firewall settings to allow access.
 - I chose local deployment as I considered that the most likely use case for this type of information & dashboard would be internal teams connected to the same network.
 
 ### Docker
