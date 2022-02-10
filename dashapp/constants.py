@@ -1,4 +1,5 @@
 import json
+import platform
 
 # Relative location changes depending on how we call this file
 if __name__ == "__main__":
@@ -11,6 +12,11 @@ with open(json_location, "r") as file:
     server_info = json.load(file)
 
 HOST = server_info["host"]
+
+# Windows doesn't like "0.0.0.0"
+if all([HOST == "0.0.0.0", platform.system() == "Windows"]):
+    HOST = "localhost"
+
 FLASK_PORT = server_info["flask_port"]
 DASH_PORT = server_info["dash_port"]
 
