@@ -44,7 +44,7 @@ jobs:
           sleep 10
           curl -v --silent http://0.0.0.0:5000/api/compounds 2>&1 | grep C29H30F2N2O4
           curl -v --silent http://0.0.0.0:5000/api/assays 2>&1 | grep "Bromodomain-containing protein 2"
-          curl -v --silent http://0.0.0.0:5000/api/compound/2193125 2>&1 | grep CCOC1=CC(=O)N(C)C=C1c2cc(NC(=O)Cc3cc(F)ccc3Cl)ccc2Oc4ccc(F)cc4F
+          curl -v --silent http://0.0.0.0:5000/api/compound/2193125 2>&1 | grep "CCOC1=CC(=O)N(C)C=C1c2cc(NC(=O)Cc3cc(F)ccc3Cl)ccc2Oc4ccc(F)cc4F"
           curl -v --silent http://0.0.0.0:5000/api/assay/18201147 2>&1 | grep 300000
           curl -v --silent http://0.0.0.0:8050/compounds 2>&1 | grep waitress
           curl -v --silent http://0.0.0.0:8050/assays 2>&1 | grep waitress
