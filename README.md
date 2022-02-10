@@ -15,6 +15,15 @@ Before going through the installation steps, ensure you have the following insta
 
 The below have been tested and successfully run on Ubuntu20.04 and MacOS Catalina (10.15.7) at the time of writing (commit hash `ceff610741d3291770fb8ed9d470bb14ec717d2f`).
 
+### Cloning
+
+- Clone this repo & cd into it
+
+```shell
+$ git clone https://github.com/ChrisKneller/compounds-showcase
+$ cd compounds-showcase
+```
+
 ### Option 1: Automatic installation and running (Linux/MacOS)
 
 ```shell
@@ -29,14 +38,7 @@ After running this script once you can always just run `python3 runservers.py` t
 
 ### Option 2: Run the comands for yourself
 
-1. Clone this repo & cd into it
-
-```shell
-$ git clone https://github.com/ChrisKneller/compounds-showcase
-$ cd compounds-showcase
-```
-
-2. Set up a virtual environment, activate it and install the requirements
+1. Set up a virtual environment, activate it and install the requirements
 
 ```shell
 $ python3 -m venv .venv
@@ -44,7 +46,7 @@ $ source .venv/bin/activate
 $ pip3 install -r requirements.txt
 ```
 
-3. Run the `Prefect` flow to create a database and tables from the json data
+2. Run the `Prefect` flow to create a database and tables from the json data
 
 ```shell
 $ python3 flaskapp/transform.py
@@ -52,7 +54,7 @@ $ python3 flaskapp/transform.py
 
 Check that `compound-assay.sqlite` has been created in the `dashapp` folder. Prefect should provide some logging to show which stages were successful or unsuccessful.
 
-4. Run the servers locally
+3. Run the servers locally
 
 ```shell
 $ python3 runservers.py
