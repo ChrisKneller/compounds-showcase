@@ -109,7 +109,7 @@ Go to http://localhost:8050 or http://0.0.0.0:8050 and click compounds to start 
 ### Check out the table
  - Sort any column
  - Filter columns
-	 - Try filtering e.g. for "Cl" in molecular_formula to see any compounds containing chlorine. You can further filter for e.g. molecular weight ">500", ALogP "<5". You can then see that there is only one compound containing chlorine with a molecular weight about 500 and ALogP below 5
+	 - Try filtering e.g. for "Cl" in molecular_formula to see any compounds containing chlorine. You can further filter for e.g. molecular weight ">500", ALogP "<5". You can then see that there is only one compound containing chlorine with a molecular weight above 500 and ALogP below 5
 - Click through to any compound to see a dedicated page with further information on the compound
 
 ## On an [individual compound](http://0.0.0.0:8050/compounds/1175669) page:
@@ -133,8 +133,7 @@ Go to http://localhost:8050 or http://0.0.0.0:8050 and click compounds to start 
 ### Check out the table
  - Sort any column
  - Filter columns
-	 - Try filtering e.g. for "Cl" in molecular_formula to see any compounds containing chlorine. You can further filter for e.g. molecular weight ">500", ALogP "<5". You can then see that there is only one compound containing chlorine with a molecular weight about 500 and ALogP below 5
-- Click through to any compound to see a dedicated page with further information on the compound
+	 - Try filtering e.g. for "4" in target to see any Bromodomain-containing protein 4 assay results. You can further filter for e.g. result "Kd", value ">5000"
 
 # Notes
 
@@ -145,11 +144,13 @@ Note that a CI pipeline has been setup via Github Actions. This pipeline:
 - Sets up a fresh Ubuntu-20.04 environment
 - Clones the repository and cds into it
 - Creates a virtual environment and installs the requirements
-- Runs `transform.py`, the Prefect flow and checks that a database has been created
+- Runs `transform.py`, the Prefect flow, and checks that a database has been created
 - Runs `runservers.py` to start the servers
-- Sends various curl & grep commands to both servers to ensure content is as expected.
+- Sends various curl & grep commands to both servers to ensure content is as expected
 
 If any part fails, the whole pipeline fails.
+
+There should be a badge at the top of the README representing the status of the last pipeline that was run.
 
 ## Design choices & potential future updates
 
@@ -164,14 +165,14 @@ If any part fails, the whole pipeline fails.
 
 ### API
 - This is an incredibly basic API implementation in Flask that, again, is suitable for a basic showcase.
-- For a more complex project I would update the project structure or consider switching to DRF. FastAPI is also good option depending on the circumstances.
+- For a more complex project I would update the project structure or consider switching to DRF. FastAPI is also a good option.
 - Depending on user needs, it may or may not be beneficial to set up POST endpoints to add additional compounds and assays and/or PUT endpoints to update existing information.
 
 ### Language
-- I am first and foremost a backend developer and wanted to write as much as possible in Python. Dash, in my opinion, is a great framework for using almost pure Python to build a decent looking web dashboard.
+- I am first and foremost a backend developer and wanted to write as much as possible in Python. Dash in my opinion is a great framework for using almost pure Python to build a decent looking web dashboard.
 
 ### Deployment & server
-- The built-in server in Flask is not suitable for use in production, so I chose to use [waitress](https://github.com/Pylons/waitress), a "production-quality pure-Python WSGI server with very acceptable performance" which no dependencies other than those in the standard Python library.
+- The built-in server in Flask (& Dash) is not suitable for use in production, so I chose to use [waitress](https://github.com/Pylons/waitress), a "production-quality pure-Python WSGI server with very acceptable performance" with no dependencies other than those in the standard Python library.
 - Hosting at 0.0.0.0 allows other devices on the same network to access the server by visiting {host_computer_ip}:8050. This would require the appropriate firewall settings to allow access.
 - I chose local deployment as I considered that the most likely use case for this type of information & dashboard would be internal teams connected to the same network.
 
