@@ -13,7 +13,7 @@ Before going through the installation steps, ensure you have the following insta
 
 ## Installation
 
-The below have been tested and successfully run on Ubuntu20.04 and MacOS Catalina (10.15.7) at the time of writing (commit hash ceff610741d3291770fb8ed9d470bb14ec717d2f).
+The below have been tested and successfully run on Ubuntu20.04 and MacOS Catalina (10.15.7) at the time of writing (commit hash `ceff610741d3291770fb8ed9d470bb14ec717d2f`).
 
 ### Option 1: Automatic installation and running (Linux/MacOS)
 
