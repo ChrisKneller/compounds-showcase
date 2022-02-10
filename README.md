@@ -10,6 +10,7 @@ Before going through the installation steps, ensure you have the following insta
 - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [Python 3.8](https://www.python.org/downloads/release/python-380/)
 - [pip](https://pip.pypa.io/en/stable/installation/)
+- [Visual C++ Build Tools for Visual Studio](https://visualstudio.microsoft.com/downloads/) (Windows only)
 
 ## Installation
 
@@ -38,11 +39,26 @@ After running this script once you can always just run `python3 runservers.py` t
 
 ### Option 2: Run the comands for yourself
 
-1. Set up a virtual environment, activate it and install the requirements
+Replace `python3` with `python` if any of the commands below don't work on Windows.
+
+1. Set up a virtual environment and activate it 
+
+#### 1.1 Linux/MacOS
 
 ```shell
 $ python3 -m venv .venv
 $ source .venv/bin/activate
+```
+
+#### 1.2 Windows
+```cmd
+> python -m venv .venv
+> .venv\Scripts\activate.bat
+```
+
+2. Install the requirements
+
+```shell
 $ pip3 install -r requirements.txt
 ```
 
