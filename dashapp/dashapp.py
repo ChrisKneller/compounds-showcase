@@ -6,7 +6,7 @@ import pandas as pd
 import re
 import warnings
 
-import getter
+from dashapp import getter
 
 # Get rid of warnings that aren't helpful
 warnings.simplefilter(action="ignore", category=FutureWarning)
@@ -91,9 +91,7 @@ def single_compound_page(compound_id: str) -> html.Div:
         [html.H4("Assay results"), assay_table], className="content-container"
     )
 
-    molecular_formula = convert_molecular_formula_to_html(
-        compound["molecular_formula"]
-    )
+    molecular_formula = convert_molecular_formula_to_html(compound["molecular_formula"])
 
     return html.Div(
         children=[
@@ -170,9 +168,7 @@ def compounds_page() -> html.Div:
     for i, id in enumerate(df["compound_id"]):
         df["compound_id"][i] = f"[{id}](/compounds/{id})"
 
-    cols = [
-        {"name": i, "id": i, "presentation": "markdown"} for i in df.columns
-    ]
+    cols = [{"name": i, "id": i, "presentation": "markdown"} for i in df.columns]
 
     compounds_table = dash_table.DataTable(
         data=df.to_dict("records"),

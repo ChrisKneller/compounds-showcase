@@ -1,7 +1,13 @@
 import json
 
+# Relative location changes depending on how we call this file
+if __name__ == "__main__":
+    json_location = "../settings.json"
+elif __name__ == "dashapp.constants":
+    json_location = "settings.json"
+
 # Load and set constants
-with open("settings.json", "r") as file:
+with open(json_location, "r") as file:
     server_info = json.load(file)
 
 HOST = server_info["host"]

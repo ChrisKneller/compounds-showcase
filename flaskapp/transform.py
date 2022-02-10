@@ -3,8 +3,8 @@ import os
 from prefect import task, Flow
 import sqlalchemy as db
 
-import database
-from models import Assay, Base, Compound
+from flaskapp import database
+from flaskapp.models import Assay, Base, Compound
 
 
 @task

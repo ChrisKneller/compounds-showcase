@@ -1,6 +1,6 @@
 import requests
 
-from constants import (
+from dashapp.constants import (
     API_ASSAYS,
     API_COMPOUNDS,
     API_SINGLE_ASSAY,

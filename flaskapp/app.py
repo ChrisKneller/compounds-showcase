@@ -1,8 +1,7 @@
 from flask import Flask, jsonify
 
-import database
-from models import Assay, Compound
-
+from flaskapp import database
+from flaskapp.models import Assay, Compound
 
 app = Flask(__name__)
 app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
@@ -44,9 +43,7 @@ def api_assay(result_id: str):
 @app.route("/")
 def links():
     return (
-        "<a href='api/compounds'>Compounds</a>"
-        " | "
-        "<a href='api/assays'>Assays</a>"
+        "<a href='api/compounds'>Compounds</a>" " | " "<a href='api/assays'>Assays</a>"
     )
 
 

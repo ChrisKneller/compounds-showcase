@@ -1,8 +1,13 @@
 from contextlib import contextmanager
+import os
 import sqlalchemy as db
 import sqlalchemy.orm as orm
 
-DEFAULT_SQLITE_DB = "compound_assay"
+# Relative location changes depending on how we call this file
+if __name__ == "__main__":
+    DEFAULT_SQLITE_DB = "compound_assay"
+elif __name__ == "flaskapp.database":
+    DEFAULT_SQLITE_DB = os.path.join("flaskapp", "compound_assay")
 
 
 @contextmanager

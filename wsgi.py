@@ -3,8 +3,8 @@ import logging
 from multiprocessing import Process
 from waitress import serve
 
-import app as flaskapp
-import dashapp
+from flaskapp import app as flaskapp
+from dashapp import dashapp
 
 # Load and set constants
 with open("settings.json", "r") as file:
@@ -19,12 +19,8 @@ dash_kwargs = {"host": HOST, "port": DASH_PORT}
 
 if __name__ == "__main__":
 
-    flask_process = Process(
-        target=serve, args=(flaskapp.app,), kwargs=flask_kwargs
-    )
-    dash_process = Process(
-        target=serve, args=(dashapp.server,), kwargs=dash_kwargs
-    )
+    flask_process = Process(target=serve, args=(flaskapp.app,), kwargs=flask_kwargs)
+    dash_process = Process(target=serve, args=(dashapp.server,), kwargs=dash_kwargs)
 
     logging.basicConfig(level=logging.INFO)
 
