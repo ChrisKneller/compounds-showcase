@@ -16,14 +16,12 @@ Before going through the installation steps, ensure you have the following insta
 
 The below have been tested and successfully run on Ubuntu20.04, MacOS Catalina (10.15.7) and Windows 10 at the time of writing.
 
-NB: Cloning instructions are set to clone over SSH. If that doesn't work for you, try cloning over https. If you have any issues, please contact me at christian.kneller@gmail.com.
-
 ---
 
 ## Option 1: Automatic installation and running (Linux/MacOS)
 
 ```shell
-git clone git@github.com:ChrisKneller/compounds-showcase.git
+git clone https://github.com/ChrisKneller/compounds-showcase.git
 cd compounds-showcase
 ./setup.sh
 ```
@@ -41,7 +39,7 @@ Replace `python3` with `python` if any of the Python commands below don't work o
 ### Step 0. Clone & cd
 
 ```shell
-git clone git@github.com:ChrisKneller/compounds-showcase.git
+git clone https://github.com/ChrisKneller/compounds-showcase.git
 cd compounds-showcase
 ````
 
